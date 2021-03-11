@@ -6,4 +6,6 @@ Byzantine GentleRain is a protocol which satisfies causal consistency and is abl
 
 We know that GentleRain uses pysical time to sign each operation, so that each operation can safely give the response which will not avolite causal consistency in just one round of communication. But every coin has two sides, to check the causal dependency, each server needs to maintain the physical time of the last operation seen by all the servers. So GentleRain protocol uses two vector to store the LST and GST on each server, which is a very skillful design. Our Byzantine GentleRain takes the same strategy; however, the client needs to communicate with all the servers this time, since every server may be a byzantine server.
 
-### Implementation
+### implementation
+
+We will produce a simple implementation of Byzantine-GentleRain here using java. 
