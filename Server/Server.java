@@ -14,6 +14,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Date;
+import java.util.concurrent.*;
 
 public class Server extends Thread {
     private ServerSocket serverSocket;
@@ -36,7 +37,7 @@ public class Server extends Thread {
 
     private Storage replica;            //data replica
     
-
+    private static ExecutorService executor = Executors.newCachedThreadPool();
 
 
     /******
@@ -70,7 +71,7 @@ public class Server extends Thread {
             for(int i = 0;i < server_num;i++){
                 line = br.readLine();
                 servers[i] = line;
-                versionVector[i] = new TimeStamp(0,"NULL");
+                versionVector[I] = new TimeStamp(0,"NULL");
                 LSTVector[i] = new TimeStamp(0,"NULL");
             }
             for(int i = 0;i < server_num;i++){
@@ -246,7 +247,8 @@ public class Server extends Thread {
             
             //replica = new Storage(0,0);
             Thread t = new Server(port);
-            t.run();
+            //t.run();
+            executor.execute(t);
         }catch(IOException e){
             e.printStackTrace();
         }
